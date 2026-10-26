@@ -1,76 +1,72 @@
-# App review sentiment classification
+# Text processing and classification using Logistic Regression
+This repository contains the code for basic text processing and building a binary text classifier using Logistic Regression
 
-A reproducible classical-NLP portfolio pilot for Ajay Kadiyala: compare four
-text representations with logistic regression, without learning the vocabulary
-from the test set. Based on a ProjectPro learning project, with a newly written
-implementation and explicit changes. This is **not an LLM or GenAI application**.
+### Installation
 
-## What this demonstrates
+**Python Version: 3.8.10**
 
-- Data validation, duplicate handling and privacy-conscious feature selection
-- Leakage-safe splitting and train-only vocabulary/IDF learning
-- Count, binary-count, n-gram and TF-IDF feature pipelines
-- Reproducible evaluation, class-level metrics and inference regression tests
+The Python 3.8 version is supported for the execution of this project.
+1. Running the codes locally: Python 3.8
+    - Create a virtual environment: In the terminal or command prompt, use the following command to create a new virtual environment:
 
-## Quick start
+        - For Windows:
+            `py -3.8 -m venv env`
 
-Validated with Python 3.12.14. Use a fresh virtual environment:
+        - For macOS and Linux:
+            `python3 -m venv venv`
+        This command creates a new virtual environment named "venv" in the current directory.
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-python -m unittest discover -s tests -v
+    - Activate the virtual environment:
+
+        - For Windows (Command Prompt):
+            `venv\Scripts\activate`
+
+
+        - For macOS and Linux (Terminal) :
+            `source venv/bin/activate`
+    
+Once the virtual environment is activated, you should see the environment name (e.g., (venv)) in the terminal or command prompt.
+
+- Install project requirements: With the virtual environment active, you can now install the required packages for your project. Typically, the required packages are listed in a requirements.txt file. Make sure you have the requirements.txt file for your project.
+
+2. Setup the pip and installing dependencies in Virtual environment
+
+    - Upgrade pip
+        `python -m pip install --upgrade pip`
+
+    - To install the requirements, use the following command:
+        `pip install -r requirements.txt`
+
+
+### Dataset
+The dataset is a custom dataset where reviews about an app are taken from app store and the reviews are classified either as positive or negative
+
+### Train the model
+To train the model run:
+```buildoutcfg
+python Engine.py --file_name Canva_reviews.xlsx --vectorizer bowb --output_name binary_count_vect
 ```
+Here we can use 4 types of vectorizers:
+* Bag of Words - `bow`
+* Binary Bag of Words - `bowb`
+* N-grams - `ng`
+* TF-IDF - `tf`
 
-For a completely self-contained smoke run with 24 authored synthetic examples:
-
-```bash
-python Engine.py --data examples/synthetic_reviews.csv --min-df 1 --output artifacts/synthetic
-python predict.py --model artifacts/synthetic/model.joblib --trust-local-model --text "The design editor is useful"
+### Predictions
+To make prediction on a new review `Its the worst app ever I save my design lts not save`,  run:
+```buildoutcfg
+python predict.py --text 'Its the worst app ever I save my design lts not save' --model_name binary_count_vect
 ```
+Here `binary_count_vect` is the file name used to save the model and the vectorizer during the training phase
 
-This tiny synthetic file only demonstrates the workflow. Do not compare its
-scores with the real-data evaluation or claim it is production training data.
-
-On Windows, activate with `.venv\Scripts\activate` instead. Obtain the authorized
-local dataset as described in [data/README.md](data/README.md), then run:
-
-```bash
-python Engine.py --data /path/to/Canva_reviews.xlsx --vectorizer tf --output artifacts/tf
-python predict.py --model artifacts/tf/model.joblib --trust-local-model --text "The design editor is useful and easy to use"
-```
-
-Never load downloaded/untrusted pickle or joblib files: they can execute code.
-Only use the artifact just produced by your own local training command.
-No API key, cloud account, paid service or external model download is needed.
-
-## Repository map
-
-- `Engine.py`: training CLI and aggregate evaluation
-- `predict.py`: inference CLI with an explicit trusted-artifact guard
-- `Source/model.py`: validation, splitting and pipeline construction
-- `Source/processing.py`: shared deterministic text normalization
-- `notebooks/01_sentiment_walkthrough.ipynb`: new step-by-step walkthrough
-- `tests/`: synthetic offline tests, including leakage regression coverage
-- `reports/`: recorded real-data metrics, with no raw reviews or reviewer IDs
-- `docs/SOURCE_AND_CHANGES.md`: credit, exact changes and scope boundaries
-- `docs/METHODOLOGY.md`: approach and limitations
-- `reference/projectpro/`: eight exact source/README/requirements files for comparison only
-
-## Results and interpretation
-
-See [reports/RESULTS.md](reports/RESULTS.md) for the actual local run and the
-majority baseline. Do not infer production performance from one holdout.
-Models and raw data remain local and are excluded from Git. Eight exact
-ProjectPro source/README/requirements files are retained under `reference/` for
-comparison, not execution. Original notebooks and the full archive are preserved
-privately. The PDF is withheld pending redistribution clarification; the workbook
-is withheld to avoid republishing reviewer metadata. See the reference warning.
-
-## Honest portfolio framing
-
-A course-based implementation reviewed and improved with assistant support.
-Explain the leakage fix and preprocessing decisions in your own words before
-using it in interviews. No fabricated deployment, employer use or business ROI.
-This pilot is prepared for review; GitHub publication is a separate verified step.
+### Note on NLTK Package:
+For installing NLTK, use the command `pip install nltk` <br />
+After downloading, the NLTK corpus has to be downloaded <br />
+Run `import nltk` followed by `nltk.download()` in jupyter notebook <br />
+This will open a separate window where you can donwnload the necessary packages <br />
+For this project, you will need the following packages:<br />
+<ol>
+<li>punkt</li>
+<li>stopwords</li>
+<li>wordnet</li>
+</ol>
