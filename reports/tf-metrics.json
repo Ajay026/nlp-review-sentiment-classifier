@@ -1,0 +1,167 @@
+{
+  "model": "LogisticRegression",
+  "vectorizer": "tf",
+  "min_df": 5,
+  "seed": 42,
+  "test_size": 0.2,
+  "data_sha256": "b7f68caa4ef14d282dfb1ae5874194aa25123b02922bdf14f9429be2ab11a60b",
+  "data_audit": {
+    "input_rows": 1500,
+    "blank_normalized_rows_removed": 0,
+    "conflicting_text_rows_removed": 0,
+    "duplicate_text_rows_removed": 0,
+    "usable_rows": 1500,
+    "label_counts": {
+      "Positive": 1032,
+      "Negative": 468
+    }
+  },
+  "train_rows": 1200,
+  "test_rows": 300,
+  "normalized_text_overlap": 0,
+  "vocabulary_size": 475,
+  "train": {
+    "accuracy": 0.935,
+    "balanced_accuracy": 0.9074270694410276,
+    "macro_f1": 0.9214762465645858,
+    "confusion_matrix_label_order": [
+      "Negative",
+      "Positive"
+    ],
+    "confusion_matrix": [
+      [
+        312,
+        62
+      ],
+      [
+        16,
+        810
+      ]
+    ],
+    "classification_report": {
+      "Negative": {
+        "precision": 0.9512195121951219,
+        "recall": 0.8342245989304813,
+        "f1-score": 0.8888888888888888,
+        "support": 374.0
+      },
+      "Positive": {
+        "precision": 0.9288990825688074,
+        "recall": 0.9806295399515739,
+        "f1-score": 0.9540636042402827,
+        "support": 826.0
+      },
+      "accuracy": 0.935,
+      "macro avg": {
+        "precision": 0.9400592973819646,
+        "recall": 0.9074270694410276,
+        "f1-score": 0.9214762465645858,
+        "support": 1200.0
+      },
+      "weighted avg": {
+        "precision": 0.9358556164690086,
+        "recall": 0.935,
+        "f1-score": 0.933750817955765,
+        "support": 1200.0
+      }
+    }
+  },
+  "test": {
+    "accuracy": 0.94,
+    "balanced_accuracy": 0.9244990704399918,
+    "macro_f1": 0.9294523411371238,
+    "confusion_matrix_label_order": [
+      "Negative",
+      "Positive"
+    ],
+    "confusion_matrix": [
+      [
+        83,
+        11
+      ],
+      [
+        7,
+        199
+      ]
+    ],
+    "classification_report": {
+      "Negative": {
+        "precision": 0.9222222222222223,
+        "recall": 0.8829787234042553,
+        "f1-score": 0.9021739130434783,
+        "support": 94.0
+      },
+      "Positive": {
+        "precision": 0.9476190476190476,
+        "recall": 0.9660194174757282,
+        "f1-score": 0.9567307692307693,
+        "support": 206.0
+      },
+      "accuracy": 0.94,
+      "macro avg": {
+        "precision": 0.9349206349206349,
+        "recall": 0.9244990704399918,
+        "f1-score": 0.9294523411371238,
+        "support": 300.0
+      },
+      "weighted avg": {
+        "precision": 0.9396613756613756,
+        "recall": 0.94,
+        "f1-score": 0.9396362876254182,
+        "support": 300.0
+      }
+    }
+  },
+  "majority_baseline_test": {
+    "accuracy": 0.6866666666666666,
+    "balanced_accuracy": 0.5,
+    "macro_f1": 0.40711462450592883,
+    "confusion_matrix_label_order": [
+      "Negative",
+      "Positive"
+    ],
+    "confusion_matrix": [
+      [
+        0,
+        94
+      ],
+      [
+        0,
+        206
+      ]
+    ],
+    "classification_report": {
+      "Negative": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1-score": 0.0,
+        "support": 94.0
+      },
+      "Positive": {
+        "precision": 0.6866666666666666,
+        "recall": 1.0,
+        "f1-score": 0.8142292490118577,
+        "support": 206.0
+      },
+      "accuracy": 0.6866666666666666,
+      "macro avg": {
+        "precision": 0.3433333333333333,
+        "recall": 0.5,
+        "f1-score": 0.40711462450592883,
+        "support": 300.0
+      },
+      "weighted avg": {
+        "precision": 0.47151111111111105,
+        "recall": 0.6866666666666666,
+        "f1-score": 0.5591040843214756,
+        "support": 300.0
+      }
+    }
+  },
+  "runtime": {
+    "python": "3.12.14",
+    "sklearn": "1.8.0",
+    "pandas": "2.2.3"
+  },
+  "evaluation_note": "Single stratified holdout, not external validation. Fixed TF-IDF default was chosen before inspecting results. Comparing four modes on this holdout is exploratory, not an unbiased model-selection protocol."
+}
